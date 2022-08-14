@@ -1,12 +1,12 @@
 `include "defines.v"
 module ex(
 	//from id_ex
-	input wire[31:0] inst_i, 
-	input wire[31:0]  ,
-	input wire[31:0] op1_i,
-	input wire[31:0] op2_i,
-	input wire[4:0]  rd_addr_i,
-	input wire rd_wen_i,
+	input wire[31:0] 	inst_i, 
+	input wire[31:0]  	inst_addr_i,
+	input wire[31:0] 	op1_i,
+	input wire[31:0] 	op2_i,
+	input wire[4:0]  	rd_addr_i,
+	input wire 			rd_wen_i,
 
 	//to regs
 	output reg[4:0] rd_addr_o,
@@ -37,7 +37,7 @@ module ex(
 	assign rs2 		= 	inst_i[24:20];
 
 	//branch 
-	assign jump_imm = {{19{inst_i[31]}},inst_i[31],inst_i[7],inst_i[30:25],inst[11:8],1'b0};
+	assign jump_imm = {{19{inst_i[31]}},inst_i[31],inst_i[7],inst_i[30:25],inst_i[11:8],1'b0};
 	assign op1_i_equal_op2_i = (op1_i == op2_i)? 1'b1: 1'b0;
 
 	always@(*) begin
@@ -92,12 +92,12 @@ module ex(
 				case (funct3)
 
 					`INST_BEQ:begin
-						jump_addr_o	= 	(inst_addr_i + jump_imm) & ({20{op1_i_equal_op2_i}});
+						jump_addr_o	= 	(inst_addr_i + jump_imm) & (op1_i_equal_op2_i);
 						jump_en_o	=	op1_i_equal_op2_i;
 						hold_flag_o	=	1'b0;
 					end
 					`INST_BNE:begin
-						jump_addr_o	= 	(inst_addr_i + jump_imm) & ({20{jump_en_o}});
+						jump_addr_o	= 	(inst_addr_i + jump_imm) & (~op1_i_equal_op2_i);
 						jump_en_o	=	~op1_i_equal_op2_i;
 						hold_flag_o	=	1'b0;
 					end
@@ -107,6 +107,24 @@ module ex(
 						hold_flag_o	=	1'b0;	
 					end 
 				endcase
+			end
+
+			`INST_JAL:begin
+				rd_data_o = inst_addr_i + 32'h4;
+				rd_addr_o = rd_addr_i;
+				rd_wen_o  = 1'b1;
+				jump_addr_o	= 	inst_addr_i + op1_i;
+				jump_en_o	=	1'b1;
+				hold_flag_o	=	1'b0;
+			end
+
+			`INST_LUI:begin
+				rd_data_o	= 	op1_i;
+				rd_addr_o	= 	rd_addr_i;
+				rd_wen_o    = 	1'b1;
+				jump_addr_o	= 	32'b0;
+				jump_en_o	=	1'b0;
+				hold_flag_o	=	1'b0;
 			end
 
 			default:begin

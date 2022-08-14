@@ -10,7 +10,7 @@ module pc_reg(
 		if(!rst_n)
 			pc_o <= 32'b0;
 		else if(jump_en_i)
-			pc <= jump_addr_i;
+			pc_o <= jump_addr_i;
 		else
 			pc_o <= pc_o + 3'd4;
 	end
