@@ -38,11 +38,22 @@ module risc_v_top(
 	wire [31:0] ex_rd_data_o;
 	wire 		ex_rd_wen_o;
 
+	//from ex to ctrl
+	wire [31:0] ex_jump_addr_o;
+	wire 		ex_jump_en_o;
+	wire 		ex_hold_flag_o;
+	// from ctrl to pc_reg
+	wire [31:0] ctrl_jump_addr_o;
+	wire 		ctrl_jump_en_o;
+	//from ctrl to if_id & id_ex
+	wire 		ctrl_hold_flag_o;
+
 
 	pc_reg pc_reg1(
 		.clk   		 (clk),
 		.rst_n 		 (rst_n),
-
+		.jump_addr_i (ctrl_jump_addr_o),
+		.jump_en_i	 (ctrl_jump_en_o),
 		.pc_o		 (pc_reg_pc_o)
 	);
 
@@ -62,7 +73,7 @@ module risc_v_top(
 		.rst_n			 (rst_n),
 		.inst_i			 (if_inst_o),
 		.inst_addr_i	 (if_inst_addr_o),
-
+		.hold_flag_i	 (ctrl_hold_flag_o),
 		.inst_addr_o	 (if_id_inst_addr_o),
 		.inst_o			 (if_id_inst_o) 
 	);
@@ -107,17 +118,14 @@ module risc_v_top(
 	id_ex id_ex1(
 		.clk			(clk),
 		.rst_n			(rst_n),
-
-		//from id
-		.inst_i			(id_inst_o),
+		.inst_i			(id_inst_o),			//from id
 		.inst_addr_i	(id_inst_addr_o),
 		.op1_i			(id_op1_o), 
 		.op2_i			(id_op2_o),
 		.rd_addr_i		(id_rd_addr_o), 
 		.reg_wen_i		(id_reg_wen),
-
-		//to ex
-		.inst_o			(id_ex_inst_o),
+		.hold_flag_i	(ctrl_hold_flag_o),		//from ctrl
+		.inst_o			(id_ex_inst_o),			//to ex
 		.inst_addr_o	(id_ex_inst_addr_o),
 		.op1_o			(id_ex_op1_o), 
 		.op2_o			(id_ex_op2_o),
@@ -137,7 +145,20 @@ module risc_v_top(
 		//to regs
 		.rd_addr_o		(ex_rd_addr_o),
 		.rd_data_o		(ex_rd_data_o),
-		.rd_wen_o		(ex_rd_wen_o)
+		.rd_wen_o		(ex_rd_wen_o),
+
+		.jump_addr_o				(ex_jump_addr_o),
+		.jump_en_o					(ex_jump_en_o),
+		.hold_flag_o				(ex_hold_flag_o)
+	);
+
+	ctrl ctrl1(
+		.jump_addr_i	    (ex_jump_addr_o),	
+		.jump_en_i	    	(ex_jump_en_o),
+		.hold_flag_ex_i		(ex_hold_flag_o),
+		.jump_addr_o	    (ctrl_jump_addr_o),	
+		.jump_en_o	    	(ctrl_jump_en_o),
+		.hold_flag_o		(ctrl_hold_flag_o)
 	);
 
 endmodule
