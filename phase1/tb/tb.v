@@ -29,7 +29,8 @@ module tb;
 
     //rom init
     initial begin
-        $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-add.txt", tb.risc_v_cpu1.rom1.rom_mem);
+        // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-srai.txt", tb.risc_v_cpu1.rom1.rom_mem);
+        $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-bne.txt", tb.risc_v_cpu1.rom1.rom_mem);
     end
 
     initial begin

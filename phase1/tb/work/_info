@@ -16,6 +16,7 @@ V9jzoNYgg8f<>kTW9:Kg541
 Z1 o-quiet -auto_acc_if_foreign -work work
 n@_opt
 Z2 OL;O;10.4;61
+R0
 T_opt1
 !s110 1660472203
 VFY6EDiW>0RHC?2Mod_2hK0
@@ -26,262 +27,249 @@ n@_opt1
 R2
 R0
 vctrl
-Z3 !s110 1660472276
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+r1
+!s85 0
+31
 !i10b 1
 !s100 NDcUkCjU3GLNYhDPP=WA<0
 IhKcGVzCLX@A<ASj[_OTOJ3
-Z4 VDg1SIo80bB@j0V0VzS_@n1
-Z5 dD:/Learning/verilog/cpu/prj/phase1/tb
+Z4 dD:/Learning/verilog/cpu/prj/phase1/tb
 w1660274896
 8D:/Learning/verilog/cpu/prj/phase1/rtl/ctrl.v
 FD:/Learning/verilog/cpu/prj/phase1/rtl/ctrl.v
 L0 1
-Z6 OL;L;10.4;61
-r1
-!s85 0
-31
-!s108 1660472276.926000
+Z5 OL;L;10.4;61
+!s108 1660666924.770000
 !s107 D:/Learning/verilog/cpu/prj/phase1/rtl/ctrl.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Learning/verilog/cpu/prj/phase1/rtl/ctrl.v|
 !i113 0
-Z7 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z6 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 vdff_s_set
-Z8 !s110 1660472277
+R3
+r1
+!s85 0
+31
 !i10b 1
-!s100 ib<^;ALC<?Ri6M:`^;l?e1
-I0S=zKeSgi3a6]YgmaJWe50
+!s100 =42[NB5oOO4lD<^1l0NMG1
+Ijm>MI5>SOW@857J6KT6@e0
 R4
-R5
-w1660275113
+w1660474380
 8D:/Learning/verilog/cpu/prj/phase1/rtl/dff_s_set.v
 FD:/Learning/verilog/cpu/prj/phase1/rtl/dff_s_set.v
 L0 1
-R6
-r1
-!s85 0
-31
-!s108 1660472277.138000
+R5
+!s108 1660666924.958000
 !s107 D:/Learning/verilog/cpu/prj/phase1/rtl/dff_s_set.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Learning/verilog/cpu/prj/phase1/rtl/dff_s_set.v|
 !i113 0
-R7
+R6
 vex
-R8
+R3
+r1
+!s85 0
+31
 !i10b 1
-!s100 3RF80Ac[HlRP[dQiV=aZZ0
-IOCTJ^A12]gY8LXzYiaC4L0
+!s100 M[3e_1R;;b5bibO<:8ddj3
+I=]dUTWA5jGjP_=P`Hl6`A1
 R4
-R5
-w1660472270
+w1660666921
 8D:/Learning/verilog/cpu/prj/phase1/rtl/ex.v
 FD:/Learning/verilog/cpu/prj/phase1/rtl/ex.v
 L0 2
-R6
-r1
-!s85 0
-31
-!s108 1660472277.243000
+R5
+!s108 1660666925.055000
 !s107 D:\Learning\verilog\cpu\prj\phase1\rtl\defines.v|D:/Learning/verilog/cpu/prj/phase1/rtl/ex.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Learning/verilog/cpu/prj/phase1/rtl/ex.v|
 !i113 0
-R7
-vid
-R8
-!i10b 1
-!s100 bo2WI<He`L:A2eKbPS6Bi3
-Im]XKSc>TTT0FI<]ZS?XK62
-R4
-R5
-w1660452389
-8D:/Learning/verilog/cpu/prj/phase1/rtl/id.v
-FD:/Learning/verilog/cpu/prj/phase1/rtl/id.v
-L0 2
 R6
+vid
+R3
 r1
 !s85 0
 31
-!s108 1660472277.353000
+!i10b 1
+!s100 2OmLX;g5feQYBzPPzW04?2
+IXediCfU@nN:NEWWA@XOfh1
+R4
+w1660662635
+8D:/Learning/verilog/cpu/prj/phase1/rtl/id.v
+FD:/Learning/verilog/cpu/prj/phase1/rtl/id.v
+L0 2
+R5
+!s108 1660666925.152000
 !s107 D:\Learning\verilog\cpu\prj\phase1\rtl\defines.v|D:/Learning/verilog/cpu/prj/phase1/rtl/id.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Learning/verilog/cpu/prj/phase1/rtl/id.v|
 !i113 0
-R7
+R6
 vid_ex
-R8
+R3
+r1
+!s85 0
+31
 !i10b 1
 !s100 ?3<gV57dV98caX[3;f=Z]2
 I=3bbfi7d1eP?<m:hVF?]B2
 R4
-R5
 w1660275138
 8D:/Learning/verilog/cpu/prj/phase1/rtl/id_ex.v
 FD:/Learning/verilog/cpu/prj/phase1/rtl/id_ex.v
 L0 2
-R6
-r1
-!s85 0
-31
-!s108 1660472277.462000
+R5
+!s108 1660666925.251000
 !s107 D:\Learning\verilog\cpu\prj\phase1\rtl\defines.v|D:/Learning/verilog/cpu/prj/phase1/rtl/id_ex.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Learning/verilog/cpu/prj/phase1/rtl/id_ex.v|
 !i113 0
-R7
+R6
 vif_id
-R8
+R3
+r1
+!s85 0
+31
 !i10b 1
 !s100 3[2I28?dhPj43h]Y12jJo3
 IhGgjCg7:CNWM?k3Z[9>Xk1
 R4
-R5
 w1660454049
 8D:/Learning/verilog/cpu/prj/phase1/rtl/if_id.v
 FD:/Learning/verilog/cpu/prj/phase1/rtl/if_id.v
 L0 2
-R6
-r1
-!s85 0
-31
-!s108 1660472277.573000
+R5
+!s108 1660666925.346000
 !s107 D:\Learning\verilog\cpu\prj\phase1\rtl\defines.v|D:/Learning/verilog/cpu/prj/phase1/rtl/if_id.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Learning/verilog/cpu/prj/phase1/rtl/if_id.v|
 !i113 0
-R7
+R6
 vifetch
-R8
+R3
+r1
+!s85 0
+31
 !i10b 1
 !s100 aUk6aKe<baV<NZ1n6IAYZ3
 IXKiJgOKEUGNN839jW7be71
 R4
-R5
 w1660204773
 8D:/Learning/verilog/cpu/prj/phase1/rtl/ifetch.v
 FD:/Learning/verilog/cpu/prj/phase1/rtl/ifetch.v
 L0 1
-R6
-r1
-!s85 0
-31
-!s108 1660472277.683000
+R5
+!s108 1660666925.441000
 !s107 D:/Learning/verilog/cpu/prj/phase1/rtl/ifetch.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Learning/verilog/cpu/prj/phase1/rtl/ifetch.v|
 !i113 0
-R7
+R6
 vpc_reg
-R8
+R3
+r1
+!s85 0
+31
 !i10b 1
 !s100 8D4^JSK6nS:V_`Abz4HKz0
 I7[[hE>SFiXE3<WN@aJL@l1
 R4
-R5
 w1660453064
 8D:/Learning/verilog/cpu/prj/phase1/rtl/pc_reg.v
 FD:/Learning/verilog/cpu/prj/phase1/rtl/pc_reg.v
 L0 1
-R6
-r1
-!s85 0
-31
-!s108 1660472277.791000
+R5
+!s108 1660666925.533000
 !s107 D:/Learning/verilog/cpu/prj/phase1/rtl/pc_reg.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Learning/verilog/cpu/prj/phase1/rtl/pc_reg.v|
 !i113 0
-R7
-vregs
-!s110 1660472279
-!i10b 1
-!s100 b`?BSTHboOT<[HW_83:W41
-ID;NSD1i>Y?KDJOJC=Fhge2
-R4
-R5
-w1660208881
-8D:/Learning/verilog/cpu/prj/phase1/rtl/regs.v
-FD:/Learning/verilog/cpu/prj/phase1/rtl/regs.v
-L0 1
 R6
+vregs
+R3
 r1
 !s85 0
 31
-!s108 1660472279.952000
+!i10b 1
+!s100 Qg]UDe;b]8kC_0;Mz2nA13
+IaOPA<DmPgW:O]@fIhI:ef0
+R4
+w1660660702
+8D:/Learning/verilog/cpu/prj/phase1/rtl/regs.v
+FD:/Learning/verilog/cpu/prj/phase1/rtl/regs.v
+L0 1
+R5
+!s108 1660666925.628000
 !s107 D:/Learning/verilog/cpu/prj/phase1/rtl/regs.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Learning/verilog/cpu/prj/phase1/rtl/regs.v|
 !i113 0
-R7
+R6
 vrisc_v_cpu
-Z9 !s110 1660472280
+R3
+r1
+!s85 0
+31
 !i10b 1
 !s100 `SYS[IKk=SBEOhUeaAI:E0
 IWdfEmGBY27;AN@;?K[7]73
 R4
-R5
 w1660207839
 8D:/Learning/verilog/cpu/prj/phase1/tb/risc_v_cpu.v
 FD:/Learning/verilog/cpu/prj/phase1/tb/risc_v_cpu.v
 L0 1
-R6
-r1
-!s85 0
-31
-!s108 1660472280.376000
+R5
+!s108 1660666925.925000
 !s107 D:/Learning/verilog/cpu/prj/phase1/tb/risc_v_cpu.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Learning/verilog/cpu/prj/phase1/tb/risc_v_cpu.v|
 !i113 0
-R7
+R6
 vrisc_v_top
-R9
+R3
+r1
+!s85 0
+31
 !i10b 1
 !s100 _^7[JMTB?<Z9RV@K4ORdJ2
 IQ;cWV;X5?Jl45Uf7DcQT50
 R4
-R5
 w1660452938
 8D:/Learning/verilog/cpu/prj/phase1/rtl/risc_v_top.v
 FD:/Learning/verilog/cpu/prj/phase1/rtl/risc_v_top.v
 L0 1
-R6
-r1
-!s85 0
-31
-!s108 1660472280.143000
+R5
+!s108 1660666925.722000
 !s107 D:/Learning/verilog/cpu/prj/phase1/rtl/risc_v_top.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Learning/verilog/cpu/prj/phase1/rtl/risc_v_top.v|
 !i113 0
-R7
+R6
 vrom
-R9
+R3
+r1
+!s85 0
+31
 !i10b 1
 !s100 gmUASDU_JSJ38hcXa8[Qb3
 IY1]FdMAVnm=?bZoa3k0]e1
 R4
-R5
 w1660209699
 8D:/Learning/verilog/cpu/prj/phase1/rtl/rom.v
 FD:/Learning/verilog/cpu/prj/phase1/rtl/rom.v
 L0 1
-R6
-r1
-!s85 0
-31
-!s108 1660472280.255000
+R5
+!s108 1660666925.824000
 !s107 D:/Learning/verilog/cpu/prj/phase1/rtl/rom.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Learning/verilog/cpu/prj/phase1/rtl/rom.v|
 !i113 0
-R7
+R6
 vtb
 R3
-!i10b 1
-!s100 iB@VcTWKUPJNnKc:YMUUV2
-IBEonQ7`U_Qmk[4eRo9PQd3
-R4
-R5
-w1660467109
-8D:/Learning/verilog/cpu/prj/phase1/tb/tb.v
-FD:/Learning/verilog/cpu/prj/phase1/tb/tb.v
-L0 4
-R6
 r1
 !s85 0
 31
-!s108 1660472276.837000
+!i10b 1
+!s100 F=<h3zF2H_`:`FWhnGYTF3
+IR1mYC_j6IC[ZFN;b6S1J63
+R4
+w1660666223
+8D:/Learning/verilog/cpu/prj/phase1/tb/tb.v
+FD:/Learning/verilog/cpu/prj/phase1/tb/tb.v
+L0 4
+R5
+!s108 1660666924.677000
 !s107 D:/Learning/verilog/cpu/prj/phase1/tb/tb.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Learning/verilog/cpu/prj/phase1/tb/tb.v|
 !i113 0
-R7
+R6
