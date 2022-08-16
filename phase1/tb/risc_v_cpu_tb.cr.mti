@@ -61,13 +61,6 @@ Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
 Top level modules:
 	ctrl
 
-} {} {}} D:/Learning/verilog/cpu/prj/phase1/rtl/dff_s_set.v {1 {vlog -work work -vopt -stats=none D:/Learning/verilog/cpu/prj/phase1/rtl/dff_s_set.v
-Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
--- Compiling module dff_s_set
-
-Top level modules:
-	dff_s_set
-
 } {} {}} D:/Learning/verilog/cpu/prj/phase1/rtl/rom.v {1 {vlog -work work -vopt -stats=none D:/Learning/verilog/cpu/prj/phase1/rtl/rom.v
 Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
 -- Compiling module rom

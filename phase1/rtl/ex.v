@@ -92,12 +92,12 @@ module ex(
 				case (funct3)
 
 					`INST_BEQ:begin
-						jump_addr_o	= 	(inst_addr_i + jump_imm) & (op1_i_equal_op2_i);
+						jump_addr_o	= 	(inst_addr_i + jump_imm) & ({32{(op1_i_equal_op2_i)}});
 						jump_en_o	=	op1_i_equal_op2_i;
 						hold_flag_o	=	1'b0;
 					end
 					`INST_BNE:begin
-						jump_addr_o	= 	(inst_addr_i + jump_imm) & (~op1_i_equal_op2_i);
+						jump_addr_o	= 	(inst_addr_i + jump_imm) & ({32{(jump_en_o)}});
 						jump_en_o	=	~op1_i_equal_op2_i;
 						hold_flag_o	=	1'b0;
 					end
