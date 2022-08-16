@@ -1,11 +1,4 @@
-D:/Learning/verilog/cpu/prj/phase1/rtl/id.v {1 {vlog -work work -vopt -stats=none D:/Learning/verilog/cpu/prj/phase1/rtl/id.v
-Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
--- Compiling module id
-
-Top level modules:
-	id
-
-} {} {}} D:/Learning/verilog/cpu/prj/phase1/rtl/risc_v_top.v {1 {vlog -work work -vopt -stats=none D:/Learning/verilog/cpu/prj/phase1/rtl/risc_v_top.v
+D:/Learning/verilog/cpu/prj/phase1/rtl/risc_v_top.v {1 {vlog -work work -vopt -stats=none D:/Learning/verilog/cpu/prj/phase1/rtl/risc_v_top.v
 Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
 -- Compiling module risc_v_top
 

@@ -25,8 +25,10 @@ module ex(
 	wire [6:0] funct7;
 	wire [11:0] imm;
 
-	wire[31:0] jump_imm;
-	wire       op1_i_equal_op2_i;
+	wire[31:0] 	jump_imm;
+	wire       	op1_i_equal_op2_i;
+	wire		op1_i_lt_op2_i;
+	wire		op1_i_ltu_op2_i;
 	
 	assign opcode 	= 	inst_i[6:0];
 	assign rd 		= 	inst_i[11:7];
@@ -38,7 +40,9 @@ module ex(
 
 	//branch 
 	assign jump_imm = {{19{inst_i[31]}},inst_i[31],inst_i[7],inst_i[30:25],inst_i[11:8],1'b0};
-	assign op1_i_equal_op2_i = (op1_i == op2_i)? 1'b1: 1'b0;
+	assign op1_i_equal_op2_i = (op1_i == op2_i)? 1'b1: 1'b0;					//			BEQ  	BNE
+	assign op1_i_ltu_op2_i	 =	(op1_i < op2_i)? 1'b1: 1'b0;					//unsigned	BLTU  	BGEU
+	assign op1_i_lt_op2_i	 =	($signed(op1_i) < $signed(op2_i))? 1'b1: 1'b0;	//signed	BLT  	BGE			
 
 	always@(*) begin
 		case(opcode)
@@ -97,9 +101,29 @@ module ex(
 						hold_flag_o	=	1'b0;
 					end
 					`INST_BNE:begin
-						jump_addr_o	= 	(inst_addr_i + jump_imm) & ({32{(jump_en_o)}});
+						jump_addr_o	= 	(inst_addr_i + jump_imm) & ({32{(~op1_i_equal_op2_i)}});//不能用jump_en_o信号来进行与操作。输出信号不要再参与控制其他信号，否则会形成逻辑环路！！
 						jump_en_o	=	~op1_i_equal_op2_i;
 						hold_flag_o	=	1'b0;
+					end
+					`INST_BLT:begin
+						jump_addr_o	= 	(inst_addr_i + jump_imm) & ({32{(op1_i_lt_op2_i)}});
+						jump_en_o	=	op1_i_lt_op2_i;
+						hold_flag_o	=	1'b0;						
+					end
+					`INST_BGE:begin		
+						jump_addr_o	= 	(inst_addr_i + jump_imm) & ({32{(~op1_i_lt_op2_i)}});
+						jump_en_o	=	~op1_i_lt_op2_i;
+						hold_flag_o	=	1'b0;						
+					end
+					`INST_BLTU:begin	
+						jump_addr_o	= 	(inst_addr_i + jump_imm) & ({32{(op1_i_ltu_op2_i)}});
+						jump_en_o	=	op1_i_ltu_op2_i;
+						hold_flag_o	=	1'b0;						
+					end
+					`INST_BGEU:begin	
+						jump_addr_o	= 	(inst_addr_i + jump_imm) & ({32{(~op1_i_ltu_op2_i)}});
+						jump_en_o	=	~op1_i_ltu_op2_i;
+						hold_flag_o	=	1'b0;						
 					end
 					default:begin
 						jump_addr_o	= 	32'b0;
@@ -113,6 +137,7 @@ module ex(
 				rd_data_o = inst_addr_i + 32'h4;
 				rd_addr_o = rd_addr_i;
 				rd_wen_o  = 1'b1;
+
 				jump_addr_o	= 	inst_addr_i + op1_i;
 				jump_en_o	=	1'b1;
 				hold_flag_o	=	1'b0;
