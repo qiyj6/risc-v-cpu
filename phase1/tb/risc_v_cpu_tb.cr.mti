@@ -1,4 +1,11 @@
-D:/Learning/verilog/cpu/prj/phase1/rtl/id.v {1 {vlog -work work -vopt -stats=none D:/Learning/verilog/cpu/prj/phase1/rtl/id.v
+D:/Learning/verilog/cpu/prj/phase1/rtl/ex.v {1 {vlog -work work -vopt -stats=none D:/Learning/verilog/cpu/prj/phase1/rtl/ex.v
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
+-- Compiling module ex
+
+Top level modules:
+	ex
+
+} {} {}} D:/Learning/verilog/cpu/prj/phase1/rtl/id.v {1 {vlog -work work -vopt -stats=none D:/Learning/verilog/cpu/prj/phase1/rtl/id.v
 Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
 -- Compiling module id
 
@@ -33,13 +40,6 @@ Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
 Top level modules:
 	id_ex
 
-} {} {}} D:/Learning/verilog/cpu/prj/phase1/tb/tb.v {1 {vlog -work work -vopt -stats=none D:/Learning/verilog/cpu/prj/phase1/tb/tb.v
-Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
--- Compiling module tb
-
-Top level modules:
-	tb
-
 } {} {}} D:/Learning/verilog/cpu/prj/phase1/rtl/if_id.v {1 {vlog -work work -vopt -stats=none D:/Learning/verilog/cpu/prj/phase1/rtl/if_id.v
 Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
 -- Compiling module if_id
@@ -54,6 +54,13 @@ Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
 Top level modules:
 	ifetch
 
+} {} {}} D:/Learning/verilog/cpu/prj/phase1/rtl/dff_s_set.v {1 {vlog -work work -vopt -stats=none D:/Learning/verilog/cpu/prj/phase1/rtl/dff_s_set.v
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
+-- Compiling module dff_s_set
+
+Top level modules:
+	dff_s_set
+
 } {} {}} D:/Learning/verilog/cpu/prj/phase1/rtl/ctrl.v {1 {vlog -work work -vopt -stats=none D:/Learning/verilog/cpu/prj/phase1/rtl/ctrl.v
 Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
 -- Compiling module ctrl
@@ -61,15 +68,15 @@ Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
 Top level modules:
 	ctrl
 
+} {} {}} D:/Learning/verilog/cpu/prj/phase1/rtl/defines.v {1 {vlog -work work -vopt -stats=none D:/Learning/verilog/cpu/prj/phase1/rtl/defines.v
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
+
 } {} {}} D:/Learning/verilog/cpu/prj/phase1/rtl/rom.v {1 {vlog -work work -vopt -stats=none D:/Learning/verilog/cpu/prj/phase1/rtl/rom.v
 Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
 -- Compiling module rom
 
 Top level modules:
 	rom
-
-} {} {}} D:/Learning/verilog/cpu/prj/phase1/rtl/defines.v {1 {vlog -work work -vopt -stats=none D:/Learning/verilog/cpu/prj/phase1/rtl/defines.v
-Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
 
 } {} {}} D:/Learning/verilog/cpu/prj/phase1/rtl/pc_reg.v {1 {vlog -work work -vopt -stats=none D:/Learning/verilog/cpu/prj/phase1/rtl/pc_reg.v
 Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014

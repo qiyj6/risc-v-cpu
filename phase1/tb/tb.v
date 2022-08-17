@@ -29,8 +29,27 @@ module tb;
 
     //rom init
     initial begin
-        $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-srai.txt", tb.risc_v_cpu1.rom1.rom_mem);
+        //I type inst tb                        all pass
+        // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-srai.txt", tb.risc_v_cpu1.rom1.rom_mem);
+        // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-slti.txt", tb.risc_v_cpu1.rom1.rom_mem);
+        // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-sltiu.txt", tb.risc_v_cpu1.rom1.rom_mem);
+        // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-ori.txt", tb.risc_v_cpu1.rom1.rom_mem);
+        // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-xori.txt", tb.risc_v_cpu1.rom1.rom_mem);
+        // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-srli.txt", tb.risc_v_cpu1.rom1.rom_mem);
+        // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-andi.txt", tb.risc_v_cpu1.rom1.rom_mem);
+        // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-slli.txt", tb.risc_v_cpu1.rom1.rom_mem);
+        // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-srli.txt", tb.risc_v_cpu1.rom1.rom_mem);
+
+
+        //branch type inst tb                   all pass
         // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-bne.txt", tb.risc_v_cpu1.rom1.rom_mem);
+        // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-beq.txt", tb.risc_v_cpu1.rom1.rom_mem);
+        // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-bge.txt", tb.risc_v_cpu1.rom1.rom_mem);
+        // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-bgeu.txt", tb.risc_v_cpu1.rom1.rom_mem);
+        // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-blt.txt", tb.risc_v_cpu1.rom1.rom_mem);
+        $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-bltu.txt", tb.risc_v_cpu1.rom1.rom_mem);
+
+        // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-lui.txt", tb.risc_v_cpu1.rom1.rom_mem);
     end
 
     initial begin
