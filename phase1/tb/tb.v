@@ -64,8 +64,10 @@ module tb;
         // pass
         // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-lui.txt", tb.risc_v_cpu1.rom1.rom_mem);
 
-        //  no pass 缺少auipc指令
-        $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-jal.txt", tb.risc_v_cpu1.rom1.rom_mem);
+        //  all pass
+        // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-auipc.txt", tb.risc_v_cpu1.rom1.rom_mem);
+        // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-jal.txt", tb.risc_v_cpu1.rom1.rom_mem);
+        $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-jalr.txt", tb.risc_v_cpu1.rom1.rom_mem);
     end
 
     initial begin
