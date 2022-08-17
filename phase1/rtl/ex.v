@@ -45,6 +45,25 @@ module ex(
 	assign op1_i_lt_op2_i	 =	(($signed(op1_i)) < ($signed(op2_i)))? 1'b1: 1'b0;	//signed	BLT  	BGE
 
 
+	//ALU 
+	wire[31:0] op1_i_add_op2_i;
+	wire[31:0] op1_i_and_op2_i;
+	wire[31:0] op1_i_xor_op2_i;
+	wire[31:0] op1_i_or_op2_i;
+	wire[31:0] op1_i_sll_op2_i;
+	wire[31:0] op1_i_srl_op2_i;
+	wire[31:0] base_addr_add_addr_offset;
+	wire[31:0] base_addr_add_4;
+
+	assign op1_i_add_op2_i = op1_i + op2_i;								//adding device
+	assign op1_i_and_op2_i = op1_i & op2_i;								//and gate
+	assign op1_i_xor_op2_i = op1_i ^ op2_i;								//xor
+	assign op1_i_or_op2_i  = op1_i | op2_i;								//or gate
+	assign op1_i_sll_op2_i = op1_i << op2_i;							//shift left logic
+	assign op1_i_srl_op2_i = op1_i >> op2_i;							//shift right logic
+	assign base_addr_add_addr_offset = inst_addr_i + jump_imm;			//address add
+	assign base_addr_add_4 = inst_addr_i + 32'h4;
+
 	//type I	
 	wire [31:0] SRA_mask;
 
@@ -58,7 +77,7 @@ module ex(
 				hold_flag_o	=	1'b0;				
 				case(funct3)
 					`INST_ADDI:begin
-						rd_data_o = op1_i + op2_i;
+						rd_data_o = op1_i_add_op2_i;
 						rd_addr_o = rd_addr_i;
 						rd_wen_o  = 1'b1;
 					end
@@ -73,33 +92,33 @@ module ex(
 						rd_wen_o  = 1'b1;
 					end
 					`INST_XORI:begin
-						rd_data_o = op1_i ^ op2_i;
+						rd_data_o = op1_i_xor_op2_i;
 						rd_addr_o = rd_addr_i;
 						rd_wen_o  = 1'b1;
 					end
 					`INST_ORI:begin
-						rd_data_o = op1_i | op2_i;
+						rd_data_o = op1_i_or_op2_i;
 						rd_addr_o = rd_addr_i;
 						rd_wen_o  = 1'b1;
 					end
 					`INST_ANDI:begin
-						rd_data_o = op1_i & op2_i;
+						rd_data_o = op1_i_and_op2_i;
 						rd_addr_o = rd_addr_i;
 						rd_wen_o  = 1'b1;
 					end
 					`INST_SLLI:begin
-						rd_data_o = op1_i << op2_i[4:0];
+						rd_data_o = op1_i_sll_op2_i;
 						rd_addr_o = rd_addr_i;
 						rd_wen_o  = 1'b1;
 					end
 					`INST_SRI:begin
 						if (funct7[5] == 1'b1) begin	//SRAI
-							rd_data_o = (((op1_i >> op2_i[4:0]) & SRA_mask)) | (({32{op1_i[31]}}) & (~SRA_mask));
+							rd_data_o = (((op1_i_srl_op2_i) & SRA_mask)) | (({32{op1_i[31]}}) & (~SRA_mask));
 							rd_addr_o = rd_addr_i;
 							rd_wen_o  = 1'b1;							
 						end 
 						else begin						//SRLI
-							rd_data_o = op1_i >> op2_i[4:0];
+							rd_data_o = op1_i_srl_op2_i;
 							rd_addr_o = rd_addr_i;
 							rd_wen_o  = 1'b1;							
 						end
@@ -119,7 +138,7 @@ module ex(
 				case(funct3)
 					`INST_ADD_SUB:begin
 						if(funct7[5] == 1'b0) begin
-							rd_data_o = op1_i + op2_i;
+							rd_data_o = op1_i_add_op2_i;
 							rd_addr_o = rd_addr_i;
 							rd_wen_o = 1'b1;
 						end
@@ -131,7 +150,7 @@ module ex(
 					end
 
 					`INST_SLL:begin
-						rd_data_o = op1_i << op2_i[4:0];
+						rd_data_o = op1_i_sll_op2_i;
 						rd_addr_o = rd_addr_i;
 						rd_wen_o = 1'b1;
 					end
@@ -149,31 +168,31 @@ module ex(
 					end
 
 					`INST_XOR:begin
-						rd_data_o = op1_i ^ op2_i;	
+						rd_data_o = op1_i_xor_op2_i;	
 						rd_addr_o = rd_addr_i;
 						rd_wen_o = 1'b1;
 					end
 
 					`INST_OR:begin
-						rd_data_o = op1_i | op2_i;
+						rd_data_o = op1_i_or_op2_i;
 						rd_addr_o = rd_addr_i;
 						rd_wen_o = 1'b1;
 					end
 
 					`INST_AND:begin
-						rd_data_o = op1_i & op2_i;
+						rd_data_o = op1_i_and_op2_i;
 						rd_addr_o = rd_addr_i;
 						rd_wen_o = 1'b1;
 					end
 					
 					`INST_SR:begin
 						if (funct7[5] == 1'b1) begin	//SRA
-							rd_data_o = (((op1_i >> op2_i[4:0]) & SRA_mask)) | (({32{op1_i[31]}}) & (~SRA_mask));
+							rd_data_o = (((op1_i_srl_op2_i) & SRA_mask)) | (({32{op1_i[31]}}) & (~SRA_mask));
 							rd_addr_o = rd_addr_i;
 							rd_wen_o  = 1'b1;							
 						end 
 						else begin						//SRL
-							rd_data_o = op1_i >> op2_i[4:0];
+							rd_data_o = op1_i_srl_op2_i;
 							rd_addr_o = rd_addr_i;
 							rd_wen_o  = 1'b1;							
 						end
@@ -193,32 +212,32 @@ module ex(
 				rd_wen_o  = 1'b0;
 				case (funct3)
 					`INST_BEQ:begin
-						jump_addr_o	= 	(inst_addr_i + jump_imm) & ({32{(op1_i_equal_op2_i)}});
+						jump_addr_o	= 	base_addr_add_addr_offset;
 						jump_en_o	=	op1_i_equal_op2_i;
 						hold_flag_o	=	1'b0;
 					end
 					`INST_BNE:begin
-						jump_addr_o	= 	(inst_addr_i + jump_imm) & ({32{(~op1_i_equal_op2_i)}});//不能用jump_en_o信号来进行与操作。输出信号不要再参与控制其他信号，否则会形成逻辑环路！！
+						jump_addr_o	= 	base_addr_add_addr_offset;//不能用jump_en_o信号来进行与操作。输出信号不要再参与控制其他信号，否则会形成逻辑环路！！
 						jump_en_o	=	~op1_i_equal_op2_i;
 						hold_flag_o	=	1'b0;
 					end
 					`INST_BLT:begin
-						jump_addr_o	= 	(inst_addr_i + jump_imm) & ({32{(op1_i_lt_op2_i)}});
+						jump_addr_o	= 	base_addr_add_addr_offset;
 						jump_en_o	=	op1_i_lt_op2_i;
 						hold_flag_o	=	1'b0;						
 					end
 					`INST_BGE:begin		
-						jump_addr_o	= 	(inst_addr_i + jump_imm) & ({32{(~op1_i_lt_op2_i)}});
+						jump_addr_o	= 	base_addr_add_addr_offset;
 						jump_en_o	=	~op1_i_lt_op2_i;
 						hold_flag_o	=	1'b0;						
 					end
 					`INST_BLTU:begin	
-						jump_addr_o	= 	(inst_addr_i + jump_imm) & ({32{(op1_i_ltu_op2_i)}});
+						jump_addr_o	= 	base_addr_add_addr_offset;
 						jump_en_o	=	op1_i_ltu_op2_i;
 						hold_flag_o	=	1'b0;						
 					end
 					`INST_BGEU:begin	
-						jump_addr_o	= 	(inst_addr_i + jump_imm) & ({32{(~op1_i_ltu_op2_i)}});
+						jump_addr_o	= 	base_addr_add_addr_offset;
 						jump_en_o	=	~op1_i_ltu_op2_i;
 						hold_flag_o	=	1'b0;						
 					end
@@ -231,7 +250,7 @@ module ex(
 			end
 
 			`INST_JAL:begin
-				rd_data_o = inst_addr_i + 32'h4;
+				rd_data_o = base_addr_add_4;
 				rd_addr_o = rd_addr_i;
 				rd_wen_o  = 1'b1;
 				jump_addr_o	= 	inst_addr_i + op1_i;
@@ -240,10 +259,10 @@ module ex(
 			end
 
 			`INST_JALR:begin
-				rd_data_o = inst_addr_i + 32'h4;
+				rd_data_o = base_addr_add_4;
 				rd_addr_o = rd_addr_i;
 				rd_wen_o  = 1'b1;
-				jump_addr_o	= 	op1_i + op2_i;
+				jump_addr_o	= 	op1_i_add_op2_i;
 				jump_en_o	=	1'b1;
 				hold_flag_o	=	1'b0;
 			end
@@ -258,7 +277,7 @@ module ex(
 			end
 
 			`INST_AUIPC:begin
-				rd_data_o = op1_i + op2_i;
+				rd_data_o = op1_i_add_op2_i;
 				rd_addr_o = rd_addr_i;
 				rd_wen_o  = 1'b1;
 				jump_addr_o	= 	32'b0;
