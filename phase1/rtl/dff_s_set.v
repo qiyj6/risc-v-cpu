@@ -11,7 +11,7 @@ module dff_s_set #(
 	output reg [DW-1:0] data_o
 );
 
-	always@(posedge clk or negedge rst_n or posedge hold_flag_i) begin
+	always@(posedge clk or negedge rst_n) begin //使用quartus综合时报错，提示要将hold_flag_i信号加入敏感信号列表。加入之后，使用modelsim仿真，发现jump_en_o信号有毛刺，用rtl视图检查，jump_en_o信号被综合成锁存器
 		if((!rst_n)||(hold_flag_i))
 			data_o <= set_data;
 		else

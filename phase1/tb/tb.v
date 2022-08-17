@@ -29,8 +29,8 @@ module tb;
 
     //rom init
     initial begin
-        // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-srai.txt", tb.risc_v_cpu1.rom1.rom_mem);
-        $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-bne.txt", tb.risc_v_cpu1.rom1.rom_mem);
+        $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-srai.txt", tb.risc_v_cpu1.rom1.rom_mem);
+        // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-bne.txt", tb.risc_v_cpu1.rom1.rom_mem);
     end
 
     initial begin
@@ -42,13 +42,17 @@ module tb;
         //         $display("-------------------------------------------------------------------");
         //     end
         // end
-        wait(x26 == 32'b1); 
+        wait((x26 == 32'b1)||(x27 == 32'b1)); 
         #(200);     
-        if(x27 == 32'b1)begin
-            $display("pass");
+        if((x26 == 32'b1)&&(x27 == 32'b1))begin
+            $display("-------------------------------------------------------------------");
+            $display("--------------------------------pass!------------------------------");
+            $display("-------------------------------------------------------------------");
         end
         else begin
-            $display("something wrong!");
+            $display("-------------------------------------------------------------------");
+            $display("--------------------------something wrong!-------------------------");
+            $display("-------------------------------------------------------------------");
             $display("x3 register value is %d", tb.risc_v_cpu1.risc_v_top1.regs1.regs[3]);
             for (r = 0; r <31; r = r + 1'b1) begin
                  $display("x%2d register value is %d", r, tb.risc_v_cpu1.risc_v_top1.regs1.regs[r]);
