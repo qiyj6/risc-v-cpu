@@ -78,7 +78,8 @@ module id(
 			
 			`INST_TYPE_R_M:begin
 				case(funct3)
-						`INST_ADD_SUB:begin
+						`INST_ADD_SUB, `INST_SLL, `INST_SLT, `INST_SLTU,`INST_XOR, `INST_SR , `INST_OR , `INST_AND	
+						:begin
 							rs1_addr_o 	= 	rs1;
 							rs2_addr_o 	= 	rs2;
 							op1_o 		= 	rs1_data_i;

@@ -118,17 +118,67 @@ module ex(
 				hold_flag_o	=	1'b0;					
 				case(funct3)
 					`INST_ADD_SUB:begin
-						if(funct7 == 7'b0) begin
+						if(funct7[5] == 1'b0) begin
 							rd_data_o = op1_i + op2_i;
 							rd_addr_o = rd_addr_i;
 							rd_wen_o = 1'b1;
 						end
 						else begin
-							rd_data_o = op2_i - op1_i;
+							rd_data_o = op1_i - op2_i;
 							rd_addr_o = rd_addr_i;
 							rd_wen_o = 1'b1;
 						end
 					end
+
+					`INST_SLL:begin
+						rd_data_o = op1_i << op2_i[4:0];
+						rd_addr_o = rd_addr_i;
+						rd_wen_o = 1'b1;
+					end
+
+					`INST_SLT:begin
+						rd_data_o = {31'b0,op1_i_lt_op2_i};
+						rd_addr_o = rd_addr_i;
+						rd_wen_o = 1'b1;
+					end
+
+					`INST_SLTU:begin
+						rd_data_o = {31'b0,op1_i_ltu_op2_i};
+						rd_addr_o = rd_addr_i;
+						rd_wen_o = 1'b1;
+					end
+
+					`INST_XOR:begin
+						rd_data_o = op1_i ^ op2_i;	
+						rd_addr_o = rd_addr_i;
+						rd_wen_o = 1'b1;
+					end
+
+					`INST_OR:begin
+						rd_data_o = op1_i | op2_i;
+						rd_addr_o = rd_addr_i;
+						rd_wen_o = 1'b1;
+					end
+
+					`INST_AND:begin
+						rd_data_o = op1_i & op2_i;
+						rd_addr_o = rd_addr_i;
+						rd_wen_o = 1'b1;
+					end
+					
+					`INST_SR:begin
+						if (funct7[5] == 1'b1) begin	//SRA
+							rd_data_o = (((op1_i >> op2_i[4:0]) & SRA_mask)) | (({32{op1_i[31]}}) & (~SRA_mask));
+							rd_addr_o = rd_addr_i;
+							rd_wen_o  = 1'b1;							
+						end 
+						else begin						//SRL
+							rd_data_o = op1_i >> op2_i[4:0];
+							rd_addr_o = rd_addr_i;
+							rd_wen_o  = 1'b1;							
+						end
+					end	
+
 					default:begin
 						rd_data_o = 32'b0;
 						rd_addr_o = 5'b0;
