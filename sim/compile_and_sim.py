@@ -73,11 +73,11 @@ def compile():
     iverilog_cmd.append(rtl_dir + r'/rtl/ctrl.v')
     # iverilog_cmd.append(rtl_dir + r'/rtl/ram.v')
     iverilog_cmd.append(rtl_dir + r'/rtl/rom.v')
-    iverilog_cmd.append(rtl_dir + r'/rtl/ifetch.v')
+    #iverilog_cmd.append(rtl_dir + r'/rtl/ifetch.v')
     iverilog_cmd.append(rtl_dir + r'/rtl/open_risc_v.v')
     # # 通用utils
     iverilog_cmd.append(rtl_dir + r'/utils/dff_s_set.v')
-    # iverilog_cmd.append(rtl_dir + r'/utils/dual_ram.v')
+    iverilog_cmd.append(rtl_dir + r'/utils/dual_ram.v')
 
     # 顶层soc
     iverilog_cmd.append(rtl_dir + r'/tb/open_risc_v_soc.v')

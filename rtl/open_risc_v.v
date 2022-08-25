@@ -5,11 +5,11 @@ module open_risc_v(
 	output wire [31:0] inst_addr_o
 );
 
-	//pc to if
+	//pc to rom & if_id
 	wire [31:0] pc_reg_pc_o;
 	//if to if_id
-	wire [31:0] if_inst_addr_o;
-	wire [31:0] if_inst_o;
+	// wire [31:0] if_inst_addr_o;
+	// wire [31:0] if_inst_o;
 	//if_id to id
 	wire [31:0] if_id_inst_addr_o;
 	wire [31:0] if_id_inst_o;
@@ -57,22 +57,14 @@ module open_risc_v(
 		.pc_o		 (pc_reg_pc_o)
 	);
 
-
-	ifetch ifetch1(
-		.pc_addr_i	 	 (pc_reg_pc_o), 
-		.rom_inst_i		 (inst_i),
-
-		.if2rom_addr_o	 (inst_addr_o),
-		.inst_addr_o	 (if_inst_addr_o),
-		.inst_o			 (if_inst_o)
-	);
+	assign inst_addr_o = pc_reg_pc_o; 
 
 
 	if_id if_id1(
 		.clk			 (clk),
 		.rst_n			 (rst_n),
-		.inst_i			 (if_inst_o),
-		.inst_addr_i	 (if_inst_addr_o),
+		.inst_i			 (inst_i),
+		.inst_addr_i	 (pc_reg_pc_o),
 		.hold_flag_i	 (ctrl_hold_flag_o),
 		.inst_addr_o	 (if_id_inst_addr_o),
 		.inst_o			 (if_id_inst_o) 

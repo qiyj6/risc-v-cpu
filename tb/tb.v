@@ -57,7 +57,7 @@ module tb;
         //R type inst tb                    all pass
         // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-sub.txt", tb.risc_v_cpu1.rom1.rom_mem);
         // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-sll.txt", tb.risc_v_cpu1.rom1.rom_mem);
-        $readmemh("D:/Learning/verilog/cpu/prj/sim/generated/inst_data.txt", tb.open_risc_v_soc1.rom1.rom_mem);
+        $readmemh("D:/Learning/verilog/cpu/prj/sim/generated/inst_data.txt", tb.open_risc_v_soc1.rom1.rom_mem.dual_ram_template_inst.memory);
         // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-sltu.txt", tb.risc_v_cpu1.rom1.rom_mem);
         // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-xor.txt", tb.risc_v_cpu1.rom1.rom_mem);
         // $readmemh("D:/Learning/verilog/cpu/prj/phase2/bin_inst_test_file/generated/rv32ui-p-or.txt", tb.risc_v_cpu1.rom1.rom_mem);
