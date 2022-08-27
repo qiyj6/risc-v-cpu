@@ -47,6 +47,18 @@ module open_risc_v(
 	wire 		ctrl_jump_en_o;
 	//from ctrl to if_id & id_ex
 	wire 		ctrl_hold_flag_o;
+	//from mem to ex
+	wire [31:0] 	mem_rd_data_o;
+
+	//from id to  mem
+	wire 			id_mem_rd_req_o;
+	wire[31:0] 		id_mem_rd_addr_o;
+
+	//from ex to mem
+	wire [31:0] 	ex_mem_wr_addr_o;
+	wire [3:0]		ex_mem_wr_sel_o ;
+	wire 			ex_mem_wr_req_o ;
+	wire [31:0]		ex_mem_wr_data_o;
 
 
 	pc_reg pc_reg1(
@@ -103,8 +115,23 @@ module open_risc_v(
 		.op1_o			(id_op1_o),
 		.op2_o			(id_op2_o),
 		.rd_addr_o		(id_rd_addr_o),
-		.reg_wen		(id_reg_wen)	
+		.reg_wen		(id_reg_wen),
+
+		//to mem
+		.mem_rd_req_o(id_mem_rd_req_o),
+		.mem_rd_addr_o(id_mem_rd_addr_o)	
 	);
+
+	ram ram1(
+       .clk  	(clk)						,
+	   .rst_n  	(rst_n)						,
+       .wen  	(ex_mem_wr_sel_o)			,
+	   .w_addr_i(ex_mem_wr_addr_o) 			,
+	   .w_data_i(ex_mem_wr_data_o)			,
+	   .ren 	(id_mem_rd_req_o)			,
+	   .r_addr_i(id_mem_rd_addr_o) 			,
+       .r_data_o(mem_rd_data_o)	
+);
 
 
 	id_ex id_ex1(
@@ -141,7 +168,13 @@ module open_risc_v(
 
 		.jump_addr_o				(ex_jump_addr_o),
 		.jump_en_o					(ex_jump_en_o),
-		.hold_flag_o				(ex_hold_flag_o)
+		.hold_flag_o				(ex_hold_flag_o),
+
+		.mem_rd_data_i(mem_rd_data_o),
+		.mem_wr_addr_o(ex_mem_wr_addr_o),
+		.mem_wr_sel_o (ex_mem_wr_sel_o),
+		.mem_wr_req_o (ex_mem_wr_req_o),
+		.mem_wr_data_o(ex_mem_wr_data_o)
 	);
 
 	ctrl ctrl1(

@@ -17,7 +17,10 @@ module id(
 	output reg[31:0] op1_o,
 	output reg[31:0] op2_o,
 	output reg[4:0]  rd_addr_o,
-	output reg 		 reg_wen	
+	output reg 		 reg_wen,
+	//to memory
+	output reg		 mem_rd_req_o,
+	output reg[31:0] mem_rd_addr_o
 );
 
 	wire [6:0] opcode;
@@ -46,6 +49,8 @@ module id(
 	
 		case(opcode)
 			`INST_TYPE_I:begin
+				mem_rd_req_o  = 1'b0;
+				mem_rd_addr_o = 32'b0;	
 				case(funct3)
 						`INST_ADDI, `INST_SLTI, `INST_SLTIU, `INST_XORI, `INST_ORI, `INST_ANDI 
 						:begin
@@ -77,6 +82,8 @@ module id(
 			end
 			
 			`INST_TYPE_R_M:begin
+				mem_rd_req_o  = 1'b0;
+				mem_rd_addr_o = 32'b0;
 				case(funct3)
 						`INST_ADD_SUB,  `INST_SLT, `INST_SLTU,`INST_XOR, `INST_OR, `INST_AND:begin
 							rs1_addr_o 	= 	rs1;
@@ -107,6 +114,8 @@ module id(
 				endcase
 			end
 			`INST_TYPE_B:begin
+				mem_rd_req_o  = 1'b0;
+				mem_rd_addr_o = 32'b0;		
 				case (funct3)
 					`INST_BNE, `INST_BEQ, `INST_BLT, `INST_BGE, `INST_BLTU, `INST_BGEU:begin
 							rs1_addr_o 	= 	rs1;
@@ -127,6 +136,56 @@ module id(
 				endcase
 			end
 
+			`INST_TYPE_L:begin
+				case (funct3)
+					`INST_LB ,`INST_LH ,`INST_LW ,`INST_LBU,`INST_LHU:begin
+							rs1_addr_o 	= 	rs1;
+							rs2_addr_o 	= 	5'b0;
+							op1_o 		= 	rs1_data_i;
+							op2_o		= 	32'b0;
+							rd_addr_o  	= 	rd;
+							reg_wen 	= 	1'b1;
+							mem_rd_req_o  = 1'b1;
+							mem_rd_addr_o = rs1_data_i + {{20{imm[11]}},imm};
+					end 
+					default:begin
+						rs1_addr_o 	= 	5'b0;
+						rs2_addr_o 	= 	5'b0;
+						op1_o 		= 	32'b0;
+						op2_o		= 	32'b0;
+						rd_addr_o  	= 	5'b0;
+						reg_wen 	= 	1'b0;
+						mem_rd_req_o  = 1'b0;
+						mem_rd_addr_o = 32'b0;	
+					end
+				endcase
+			end	
+
+			`INST_TYPE_S:begin
+				case (funct3)
+					`INST_SB,`INST_SH,`INST_SW:begin
+							rs1_addr_o 	= 	rs1;
+							rs2_addr_o 	= 	rs2;
+							op1_o 		= 	rs1_data_i;
+							op2_o		= 	rs2_data_i;
+							rd_addr_o  	= 	5'b0;
+							reg_wen 	= 	1'b0;
+							mem_rd_req_o  = 1'b0;
+							mem_rd_addr_o = 32'b0;
+					end 
+					default:begin
+						rs1_addr_o 	= 	5'b0;
+						rs2_addr_o 	= 	5'b0;
+						op1_o 		= 	32'b0;
+						op2_o		= 	32'b0;
+						rd_addr_o  	= 	5'b0;
+						reg_wen 	= 	1'b0;
+						mem_rd_req_o  = 1'b0;
+						mem_rd_addr_o = 32'b0;	
+					end
+				endcase
+			end	
+
 			`INST_JAL:begin
 				rs1_addr_o 	= 	5'b0;
 				rs2_addr_o 	= 	5'b0;
@@ -134,6 +193,8 @@ module id(
 				op2_o		=	32'b0;
 				rd_addr_o  	= 	rd;
 				reg_wen		=	1'b1;
+				mem_rd_req_o  = 1'b0;
+				mem_rd_addr_o = 32'b0;	
 			end
 
 			`INST_JALR:begin
@@ -143,6 +204,8 @@ module id(
 				op2_o		=	{{20{imm[11]}}, imm};
 				rd_addr_o  	= 	rd;
 				reg_wen		=	1'b1;
+				mem_rd_req_o  = 1'b0;
+				mem_rd_addr_o = 32'b0;	
 			end
 
 			`INST_LUI:begin
@@ -151,7 +214,9 @@ module id(
 				op1_o 		= 	{inst_i[31:12],12'b0};
 				op2_o		= 	32'b0;
 				rd_addr_o  	= 	rd;
-				reg_wen 	= 	1'b1;				
+				reg_wen 	= 	1'b1;
+				mem_rd_req_o  = 1'b0;
+				mem_rd_addr_o = 32'b0;				
 			end
 
 			`INST_AUIPC:begin
@@ -160,7 +225,9 @@ module id(
 				op1_o 		= 	{inst_i[31:12],12'b0};
 				op2_o		= 	inst_addr_i;
 				rd_addr_o  	= 	rd;
-				reg_wen 	= 	1'b1;				
+				reg_wen 	= 	1'b1;
+				mem_rd_req_o  = 1'b0;
+				mem_rd_addr_o = 32'b0;				
 			end
 			
 			default: begin
@@ -169,7 +236,9 @@ module id(
 				op1_o 		= 	32'b0;
 				op2_o		= 	32'b0;
 				rd_addr_o  	= 	5'b0;
-				reg_wen 	= 	1'b0;			
+				reg_wen 	= 	1'b0;
+				mem_rd_req_o  = 1'b0;
+				mem_rd_addr_o = 32'b0;			
 			end
 			
 		endcase

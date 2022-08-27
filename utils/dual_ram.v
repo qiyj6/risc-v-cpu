@@ -32,7 +32,7 @@ module dual_ram #(
 	always @(posedge clk)begin
 		if(rst_n && w_en_i && r_en_i && (w_addr_i == r_addr_i) )
 			rd_equ_wr_flag <= 1'b1;
-		else if(rst_n && r_en_i)
+		else 
 			rd_equ_wr_flag <= 1'b0;
 	end
 

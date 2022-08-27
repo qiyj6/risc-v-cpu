@@ -71,7 +71,7 @@ def compile():
     iverilog_cmd.append(rtl_dir + r'/rtl/ex.v')
     iverilog_cmd.append(rtl_dir + r'/rtl/regs.v')
     iverilog_cmd.append(rtl_dir + r'/rtl/ctrl.v')
-    # iverilog_cmd.append(rtl_dir + r'/rtl/ram.v')
+    iverilog_cmd.append(rtl_dir + r'/rtl/ram.v')
     iverilog_cmd.append(rtl_dir + r'/rtl/rom.v')
     #iverilog_cmd.append(rtl_dir + r'/rtl/ifetch.v')
     iverilog_cmd.append(rtl_dir + r'/rtl/open_risc_v.v')
